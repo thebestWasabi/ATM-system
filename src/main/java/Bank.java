@@ -17,7 +17,7 @@ public class Bank {
     public String getNewUserUUID() {
         String uuid;
         Random rnd = new Random();
-        int len = 8;
+        int len = 6;
         boolean nonUnique;
 
         do {
@@ -62,7 +62,6 @@ public class Bank {
         return uuid;
     }
 
-
     /**
      * Add an account
      * @param anAccount the account to add
@@ -70,7 +69,6 @@ public class Bank {
     public void addAccount(Account anAccount) {
         this.accounts.add(anAccount);
     }
-
 
     /**
      * Create a new user of the bank
@@ -80,7 +78,6 @@ public class Bank {
      * @return          the new User object
      */
     public User addUser(String firstName, String lastName, String pin) {
-
         // create a new User object and add it to our list
         User newUser = new User(firstName, lastName, pin, this);
         this.users.add(newUser);
@@ -98,8 +95,11 @@ public class Bank {
             if (u.getUUID().compareTo(userID) == 0 && u.validatePin(pin));
             return u;
         }
+        return null; // if we haven't found the user or have in incorrect pin
+    }
 
-        // if we haven't found the user or have in incorrect pin
-        return null;
+
+    public String getName() {
+        return name;
     }
 }

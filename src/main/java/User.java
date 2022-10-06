@@ -6,8 +6,8 @@ public class User {
 
     private String firstName;
     private String lastName;
-    private String uuId;
-    private byte pinHash[]; // MD5 hash
+    private String uuID;
+    private byte pinHash[]; // the MD5 hash
     private ArrayList<Account> accounts;
 
 
@@ -28,9 +28,9 @@ public class User {
             ex.printStackTrace();
             System.exit(1);
         }
-        uuId = theBank.getNewUserUUID();
+        uuID = theBank.getNewUserUUID();
         accounts = new ArrayList<Account>();
-        System.out.printf("New user %s %s with ID %s created.\n", lastName, firstName, this.uuId);
+        System.out.printf("New user %s %s with ID %s created.\n", lastName, firstName, this.uuID);
     }
 
     /**
@@ -40,11 +40,6 @@ public class User {
     public void addAccount(Account anAccount) {
         this.accounts.add(anAccount);
     }
-
-    public String getUUID() {
-        return uuId;
-    }
-
 
     /**
      * Check whether a given pin matches the true User pin
@@ -61,5 +56,29 @@ public class User {
             System.exit(1);
         }
         return false;
+    }
+
+    /**
+     * Print summaries for the account of this user
+     */
+    public void printAccountsSummary() {
+        System.out.printf("\n\n%s's accounts summary", this.firstName);
+        for (int a = 0; a < this.accounts.size(); a++) {
+            System.out.printf("%d) %s\n", this.accounts.get(a).getSummaryLine());
+        }
+        System.out.println();
+    }
+
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getUUID() {
+        return uuID;
     }
 }
