@@ -7,7 +7,6 @@ public class Bank {
     private ArrayList<User> users;
     private ArrayList<Account> accounts;
 
-
     public Bank(String name) {
         this.name = name;
         this.users = new ArrayList<User>();
@@ -34,7 +33,6 @@ public class Bank {
                 }
             }
         } while (nonUnique);
-
         return uuid;
     }
 
@@ -58,7 +56,6 @@ public class Bank {
                 }
             }
         } while (nonUnique);
-
         return uuid;
     }
 

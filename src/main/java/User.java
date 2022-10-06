@@ -63,12 +63,15 @@ public class User {
      */
     public void printAccountsSummary() {
         System.out.printf("\n\n%s's accounts summary", this.firstName);
-        for (int a = 0; a < this.accounts.size(); a++) {
-            System.out.printf("%d) %s\n", this.accounts.get(a).getSummaryLine());
+        for (int i = 0; i < this.accounts.size(); i++) {
+            System.out.printf("%d) %s\n", i + 1, this.accounts.get(i).getSummaryLine());
         }
         System.out.println();
     }
 
+    public int numAccounts() {
+        return accounts.size();
+    }
 
     public String getFirstName() {
         return firstName;

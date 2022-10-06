@@ -22,25 +22,23 @@ public class ATM {
     /**
      * Print the ATM's login menu
      *
-     * @param theBank the Bank object whose account to use
-     * @param sc      the Scanner object to use for user input
+     * @param bank the Bank object whose account to use
+     * @param sc   the Scanner object to use for user input
      * @return the authenticated User object
      */
-    private static User mainMenuPrompt(Bank theBank, Scanner sc) {
+    private static User mainMenuPrompt(Bank bank, Scanner sc) {
         String userID;
         String pin;
         User authUser;
 
-        // prompt the user for user ID/pin combo until a correct one is reached
-        do {
-            System.out.printf("\n\nWelcome to %s\n\n", theBank.getName());
+        do { // prompt the user for user ID/pin combo until a correct one is reached
+            System.out.printf("\n\nWelcome to %s\n\n", bank.getName());
             System.out.println("Enter user ID: ");
             userID = sc.nextLine();
             System.out.printf("Enter pin; ");
             pin = sc.nextLine();
 
-            // try to get the user object corresponding to the ID and pin combo
-            authUser = theBank.userLogin(userID, pin);
+            authUser = bank.userLogin(userID, pin); // try to get the user object corresponding to the ID and pin combo
             if (authUser == null) {
                 System.out.println("Incorrect userID/pin combination. Please, try again");
             }
@@ -49,12 +47,12 @@ public class ATM {
         return authUser;
     }
 
-    private static void printUserMenu(User theUser, Scanner sc) {
-        theUser.printAccountsSummary();
+    private static void printUserMenu(User user, Scanner sc) {
+        user.printAccountsSummary();
 
         int choice;
         do {
-            System.out.printf("Здравствуйте, %s, выберите действие из меню: ", theUser.getFirstName());
+            System.out.printf("Здравствуйте, %s, выберите действие из меню: ", user.getFirstName());
             System.out.println(" 1. Посмотреть историю транзакций");
             System.out.println(" 2. Снять наличные");
             System.out.println(" 3. Положить наличные");
@@ -70,14 +68,25 @@ public class ATM {
         } while (choice < 1 || choice > 5);
 
         switch (choice) {
-            case 1 -> ATM.showTransactionHistory(theUser, sc);
-            case 2 -> ATM.withdrawlFunds(theUser, sc);
-            case 3 -> ATM.depositFunds(theUser, sc);
-            case 4 -> ATM.transferFunds(theUser, sc);
+            case 1 -> ATM.showTransactionHistory(user, sc);
+            case 2 -> ATM.withdrawlFunds(user, sc);
+            case 3 -> ATM.depositFunds(user, sc);
+            case 4 -> ATM.transferFunds(user, sc);
         }
-
         if (choice != 5) {
-            printUserMenu(theUser, sc);
+            printUserMenu(user, sc);
         }
+    }
+
+    private static void showTransactionHistory(User user, Scanner sc) {
+        int theAcct;
+        do {
+            System.out.printf("Enter the number (1-%d) of the account\n" +
+                    "whose transactions you want to see: ", user.numAccounts());
+            theAcct = sc.nextInt() - 1;
+            if (theAcct < 0 || theAcct >= user.numAccounts()) {
+                System.out.println("Invalid account. Pls try again");
+            }
+        } while (theAcct < 0 || theAcct >= user.numAccounts());
     }
 }
