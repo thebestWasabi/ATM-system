@@ -73,6 +73,14 @@ public class User {
         return accounts.size();
     }
 
+    /**
+     * Print transactions history for a particular account
+     * @param acctIdx   the index of the account to use
+     */
+    public void printAcctTransHistory(int acctIdx) {
+        accounts.get(acctIdx).printTransHistory();
+    }
+
     public String getFirstName() {
         return firstName;
     }

@@ -23,9 +23,19 @@ public class Account {
         double balance = this.getBalance();
         // format the summary line, depending on the whether the balance is negative
         if (balance >= 0) {
-            return String.format("%s : ₽%.02f : %s", this.uuId, balance, this.name);
+            return String.format("%s : ₽%.02f : %s", uuId, balance, name);
         } else {
-            return String.format("%s : ₽(%.02f) : %s", this.uuId, balance, this.name);
+            return String.format("%s : ₽(%.02f) : %s", uuId, balance, name);
+        }
+    }
+
+    /**
+     * Print the transaction history of the account
+     */
+    public void printTransHistory() {
+        System.out.printf("\nTransaction history for account %s\n", uuId);
+        for (int i = transactions.size() - 1; i >= 0; i--) {
+            System.out.printf(transactions.get(i).getSummaryLine());
         }
     }
 

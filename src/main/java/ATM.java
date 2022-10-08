@@ -88,5 +88,7 @@ public class ATM {
                 System.out.println("Invalid account. Pls try again");
             }
         } while (theAcct < 0 || theAcct >= user.numAccounts());
+
+        user.printAcctTransHistory(theAcct);
     }
 }
