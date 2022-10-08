@@ -33,9 +33,9 @@ public class Account {
      * Print the transaction history of the account
      */
     public void printTransHistory() {
-        System.out.printf("\nTransaction history for account %s\n", uuId);
+        System.out.printf("\nИстория транзакций по карте %s\n", uuId);
         for (int i = transactions.size() - 1; i >= 0; i--) {
-            System.out.printf(transactions.get(i).getSummaryLine());
+            System.out.print(transactions.get(i).getSummaryLine());
         }
     }
 
@@ -43,7 +43,7 @@ public class Account {
      * Get the balance of this account by adding the amounts of the transactions
      * @return  the balance value
      */
-    private double getBalance() {
+    public double getBalance() {
         double balance = 0;
         for (Transaction t : transactions) {
             balance += t.getAmount();
@@ -53,5 +53,16 @@ public class Account {
 
     public String getUUID() {
         return uuId;
+    }
+
+    /**
+     * Add a new transaction in the account
+     * @param amount    the amount transacted
+     * @param memo      the transaction memo
+     */
+    public void addTransaction(double amount, String memo) {
+        // create new transaction object and add it to our list
+        Transaction newTransaction = new Transaction(amount, memo,this);
+        transactions.add(newTransaction);
     }
 }

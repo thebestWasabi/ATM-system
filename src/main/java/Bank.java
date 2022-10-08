@@ -15,19 +15,19 @@ public class Bank {
 
     public String getNewUserUUID() {
         String uuid;
-        Random rnd = new Random();
+        Random random = new Random();
         int len = 6;
         boolean nonUnique;
 
         do {
             uuid = "";
             for (int i = 0; i < len; i++) {
-                uuid += ((Integer) rnd.nextInt(10)).toString();
+                uuid += ((Integer) random.nextInt(10)).toString();
             }
 
             nonUnique = false;
-            for (User u : users) {
-                if (uuid.compareTo(u.getUUID()) == 0) {
+            for (User user : users) {
+                if (uuid.compareTo(user.getUUID()) == 0) {
                     nonUnique = true;
                     break;
                 }
@@ -38,14 +38,14 @@ public class Bank {
 
     public String getNewAccountUUID() {
         String uuid;
-        Random rnd = new Random();
+        Random random = new Random();
         int len = 10;
         boolean nonUnique;
 
         do {
             uuid = "";
             for (int i = 0; i < len; i++) {
-                uuid += ((Integer) rnd.nextInt(10)).toString();
+                uuid += ((Integer) random.nextInt(10)).toString();
             }
 
             nonUnique = false;
@@ -61,10 +61,10 @@ public class Bank {
 
     /**
      * Add an account
-     * @param anAccount the account to add
+     * @param account the account to add
      */
-    public void addAccount(Account anAccount) {
-        this.accounts.add(anAccount);
+    public void addAccount(Account account) {
+        this.accounts.add(account);
     }
 
     /**
@@ -80,7 +80,7 @@ public class Bank {
         this.users.add(newUser);
 
         // create a savings account for the user and add to User and Bank accounts lists
-        Account newAccount = new Account("Savings", newUser, this);
+        Account newAccount = new Account("Tinkoff Black", newUser, this);
         newUser.addAccount(newAccount);
         this.addAccount(newAccount);
 
@@ -88,9 +88,9 @@ public class Bank {
     }
 
     public User userLogin(String userID, String pin) {
-        for (User u : this.users) {
-            if (u.getUUID().compareTo(userID) == 0 && u.validatePin(pin));
-            return u;
+        for (User user : this.users) {
+            if (user.getUUID().compareTo(userID) == 0 && user.validatePin(pin));
+            return user;
         }
         return null; // if we haven't found the user or have in incorrect pin
     }

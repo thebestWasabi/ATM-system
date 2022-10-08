@@ -5,18 +5,18 @@ public class Transaction {
     private double amount;
     private Date timestamp;
     private String memo;
-    private Account inAccount;
+    private Account account;
 
 
-    public Transaction(double amount, Account inAccount) {
+    public Transaction(double amount, Account account) {
         this.amount = amount;
-        this.inAccount = inAccount;
+        this.account = account;
         timestamp = new Date();
         memo = "";
     }
 
-    public Transaction(double amount, String memo, Account inAccount) {
-        this(amount, inAccount);
+    public Transaction(double amount, String memo, Account account) {
+        this(amount, account);
         this.memo = memo;
 
     }
@@ -27,9 +27,9 @@ public class Transaction {
      */
     public String getSummaryLine() {
         if (amount >= 0) {
-            return String.format("%s : ₽%.02f : %s", timestamp.toString(), amount, memo);
+            return String.format("%s : ₽%.02f : %s\n", timestamp.toString(), amount, memo);
         } else {
-            return String.format("%s : ₽(%.02f) : %s", timestamp.toString(), amount, memo);
+            return String.format("%s : ₽(%.02f) : %s\n", timestamp.toString(), amount, memo);
         }
     }
 
