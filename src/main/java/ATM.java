@@ -95,7 +95,7 @@ public class ATM {
             }
         } while (theAcct < 0 || theAcct >= user.numAccounts());
 
-        user.printAcctTransHistory(theAcct);
+        user.printAccountTransactionHistory(theAcct);
     }
 
     /**
@@ -141,9 +141,9 @@ public class ATM {
 
         // finally, do the transfer
         user.addAcctTransaction(fromAccount, -1 * amount, String.format(
-                "Перевод на карту %s", user.getAcctUUID(toAccount)));
+                "Перевод на карту %s", user.getAccountUUID(toAccount)));
         user.addAcctTransaction(toAccount, amount, String.format(
-                "Перевод с карты %s", user.getAcctUUID(fromAccount)));
+                "Перевод с карты %s", user.getAccountUUID(fromAccount)));
     }
 
     /**

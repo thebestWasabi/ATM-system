@@ -95,7 +95,6 @@ public class Bank {
         return null; // if we haven't found the user or have in incorrect pin
     }
 
-
     public String getName() {
         return name;
     }

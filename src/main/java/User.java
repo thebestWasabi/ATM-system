@@ -75,10 +75,10 @@ public class User {
 
     /**
      * Print transactions history for a particular account
-     * @param acctIdx the index of the account to use
+     * @param accountIdx the index of the account to use
      */
-    public void printAcctTransHistory(int acctIdx) {
-        accounts.get(acctIdx).printTransHistory();
+    public void printAccountTransactionHistory(int accountIdx) {
+        accounts.get(accountIdx).printTransHistory();
     }
 
     public String getFirstName() {
@@ -100,11 +100,11 @@ public class User {
 
     /**
      * Get the UUID of a particular account
-     * @param acctIdx   the index of the account to use
+     * @param accountIdx   the index of the account to use
      * @return          the UUID of the account
      */
-    public String getAcctUUID(int acctIdx) {
-        return accounts.get(acctIdx).getUUID();
+    public String getAccountUUID(int accountIdx) {
+        return accounts.get(accountIdx).getUUID();
     }
 
     /**
